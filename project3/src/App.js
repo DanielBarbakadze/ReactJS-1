@@ -7,10 +7,25 @@ class App extends React.Component {
   state = {
     counter: 0
   }
+
+  handleCounterAdd () {
+    this.setState({
+      counter: this.state.counter+1
+    })
+  }
+  handleCounterSubstract () {
+    this.setState({
+      counter: this.state.counter-1
+    })
+  }
   render (){
     return (
       <div className="App">
-        <Counter counter={this.state.counter} />
+        <Counter 
+          counter={this.state.counter} 
+          onCounterAdd={() => this.handleCounterAdd()}
+          onCounterSubstract={() => this.handleCounterSubstract()}
+        />
       </div>
     )
   }

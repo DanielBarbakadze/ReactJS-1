@@ -5,7 +5,15 @@ class Counter extends React.Component {
     render(){
         return(
             <div>
-                Hello, {this.props.counter}
+                <span>{this.props.counter}</span>
+                <div>
+                    <button onClick={() => this.props.onCounterAdd()}>
+                        Add
+                    </button>
+                    <button onClick={() => this.props.onCounterSubstract()}>
+                        Substract
+                    </button>
+                </div>
             </div>
         );
     };
