@@ -3,11 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import Counter from './components/Counter';
 import CounterList from './components/CounterList';
-
+import CounterListSorted from './components/CounterListSorted';
+import CounterInput from './components/CounterInput';
 class App extends React.Component {
   state = {
     counter: 0,
-    counterList: [1,2,3]
+    counterList: []
   }
 
   handleCounterAdd () {
@@ -30,10 +31,30 @@ class App extends React.Component {
     })
   }
 
+  handleCounterListClear () {
+    this.setState({
+      counterList: [],
+      counterListSorted: []
+    })
+  }
+
+  handleCounterListSorted () {
+    this.setState({
+      counterList: this.state.counterList.sort((a,b) => a-b)
+    })
+  }
+
+  handleCounterInput (num) {
+    this.setState({
+      counterList: this.state.counterList.filter(number => number !== num)
+    })
+  }
+
   render (){
     const {
       counter,
-      counterList
+      counterList,
+      counterListSorted
     } = this.state;
 
     return (
@@ -47,6 +68,13 @@ class App extends React.Component {
           counter={counter}
           counterList={counterList}
           onCounterList={() => this.handleCounterList()}
+          onCounterListClear={() => this.handleCounterListClear()}
+        />
+        <CounterListSorted
+          onCounterListSorted={() => this.handleCounterListSorted()}
+        />
+        <CounterInput
+          onCounterInput={(num) => this.handleCounterInput(num)}
         />
       </div>
     )

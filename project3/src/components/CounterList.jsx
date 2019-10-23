@@ -7,12 +7,16 @@ class CounterList extends React.Component {
             <div>
                 <div>
                     {
-                        this.props.counterList.map(counter => `${counter}, `)
+                        // this.props.counterList.map(counter => `${counter}, `)
+                        this.props.counterList.join(', ')
                     }
                 </div>
                 <div>
                     <button onClick={() => this.props.onCounterList()}>
                         Push
+                    </button>
+                    <button onClick={() => this.props.onCounterListClear()}>
+                        Clear
                     </button>
                 </div>
             </div>
