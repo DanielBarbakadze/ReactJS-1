@@ -5,10 +5,15 @@ import Counter from './components/Counter';
 import CounterList from './components/CounterList';
 import CounterListSorted from './components/CounterListSorted';
 import CounterInput from './components/CounterInput';
+import CounterOperations from './components/CounterOperations';
+import { timeout } from 'q';
+
 class App extends React.Component {
   state = {
     counter: 0,
-    counterList: []
+    counterList: [],
+    sum: 0,
+    multiply: 0
   }
 
   handleCounterAdd () {
@@ -29,6 +34,7 @@ class App extends React.Component {
     this.setState({
       counterList: newNum
     })
+    this.update()
   }
 
   handleCounterListClear () {
@@ -46,15 +52,45 @@ class App extends React.Component {
 
   handleCounterInput (num) {
     this.setState({
-      counterList: this.state.counterList.filter(number => number !== num)
+      counterList: this.state.counterList.filter(number => number !== parseInt(num))
     })
+    this.update()
+  }
+
+  handleCounterOperationSum () {
+    let temp=0
+    this.state.counterList.map(elem => temp=temp+elem)
+    this.setState({
+      sum: temp
+    })
+  }
+
+  handleCounterOperationMultiply () {
+    let temp=1
+    this.state.counterList.map(elem => temp=temp*elem)
+    if(this.state.counterList.length==0) temp=0
+    this.setState({
+      multiply: temp
+    })
+  }
+  
+  update() {
+    setTimeout(() => {
+      if(this.state.sum!=0){
+        this.handleCounterOperationSum()
+      }
+      if(this.state.multiply!=0){
+        this.handleCounterOperationMultiply()
+      }
+    }, 1)
   }
 
   render (){
     const {
       counter,
       counterList,
-      counterListSorted
+      sum,
+      multiply
     } = this.state;
 
     return (
@@ -75,6 +111,12 @@ class App extends React.Component {
         />
         <CounterInput
           onCounterInput={(num) => this.handleCounterInput(num)}
+        />
+        <CounterOperations
+          sum={sum}
+          multiply={multiply}
+          onCounterOperationSum={() => this.handleCounterOperationSum()}
+          onCounterOperationMultiply={() => this.handleCounterOperationMultiply()}
         />
       </div>
     )

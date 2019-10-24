@@ -5,9 +5,38 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #23232d;
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+button, input[type=button] {
+  background-color: #03fc5e;
+  border: none;
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 12px;
+  margin: 4px 2px;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+input{
+  background-color: #23232d;
+  border: 1px solid white;
+  border-radius: 2px;
+  color: white;
+}
+input[type=button] {
+  border-radius: 0 5px 5px 0;
+}
+
+button:hover, input[type=button]:hover {opacity: 1}
