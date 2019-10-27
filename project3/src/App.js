@@ -6,14 +6,15 @@ import CounterList from './components/CounterList';
 import CounterListSorted from './components/CounterListSorted';
 import CounterInput from './components/CounterInput';
 import CounterOperations from './components/CounterOperations';
+import ImageGallery from './components/ImageGallery';
 import { timeout } from 'q';
 
 class App extends React.Component {
   state = {
     counter: 0,
     counterList: [],
-    sum: 0,
-    multiply: 0
+    sum: '+',
+    multiply: '*'
   }
 
   handleCounterAdd () {
@@ -42,6 +43,7 @@ class App extends React.Component {
       counterList: [],
       counterListSorted: []
     })
+    this.update()
   }
 
   handleCounterListSorted () {
@@ -76,10 +78,10 @@ class App extends React.Component {
   
   update() {
     setTimeout(() => {
-      if(this.state.sum!=0){
+      if(this.state.sum!='+'){
         this.handleCounterOperationSum()
       }
-      if(this.state.multiply!=0){
+      if(this.state.multiply!='*'){
         this.handleCounterOperationMultiply()
       }
     }, 1)
@@ -117,6 +119,8 @@ class App extends React.Component {
           multiply={multiply}
           onCounterOperationSum={() => this.handleCounterOperationSum()}
           onCounterOperationMultiply={() => this.handleCounterOperationMultiply()}
+        />
+        <ImageGallery
         />
       </div>
     )

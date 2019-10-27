@@ -9,7 +9,7 @@ class CounterInput extends React.Component {
         this.setState({
             value: event.target.value
         });
-      }
+    }
 
     handleClick() {
     this.props.onCounterInput(this.state.value);
@@ -19,7 +19,7 @@ class CounterInput extends React.Component {
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <input type="text" value={this.state.value} onChange={(e) => this.handleChange(e)}></input>
                     <input type="button" value="POP" onClick={() => this.handleClick()}></input>
                 </form>
