@@ -26,10 +26,6 @@ class ImageGallery extends React.Component {
                             this.state.imageGallery.length-1
                         ]
         })
-        setTimeout(() => {
-            console.log('imageGallery - ',this.state.imageGallery)
-            console.log('currentImage - ',this.state.currentImage)
-        }, 1000);
     }
 
     handleImageGallery(direction=0) {
@@ -51,13 +47,11 @@ class ImageGallery extends React.Component {
             this.setState({
                 currentImage: direction[0]
             })
-            console.log(direction[0]);
         }
         else {
             this.setState({
                 currentImage: direction[1]
             })
-            console.log(direction[1]);
         }
       }
 
